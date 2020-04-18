@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "crypto.Desktop.Console": {
+      "commandName": "Project",
+      "commandLineArgs":
+        "unlock Vault"
+    }
+  }
+}
