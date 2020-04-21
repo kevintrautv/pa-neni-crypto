@@ -1,5 +1,6 @@
 ﻿using System;
 using crypto.Desktop.Cnsl.Commands;
+using crypto.Desktop.Cnsl.Recources;
 
 namespace crypto.Desktop.Cnsl
 {
@@ -8,7 +9,7 @@ namespace crypto.Desktop.Cnsl
         public static CommandAsync ParseConfig(string[] args)
         {
             if (args.Length == 0)
-                throw new NoConsoleArgumentException("No arguments given");
+                throw new NoConsoleArgumentException(Strings.CommandLineArgumentParser_ParseConfig_No_arguments_given);
 
             var arguments = new ArrayEnumerator<string>(args);
             
@@ -18,8 +19,10 @@ namespace crypto.Desktop.Cnsl
             {
                 case "help":
                 case "--help":
-                case "-help":
-                    throw new NotImplementedException();
+                case "-h":
+                    Console.WriteLine(Strings.HelpText);
+                    Environment.Exit(0);
+                    break;
                 
                 case "-pw":
                     PasswordPrompt.ArgumentPw = arguments.NextOrNull();
@@ -44,7 +47,7 @@ namespace crypto.Desktop.Cnsl
                 "list" => new ListCommand(arguments.NextOrNull()),
                 
 
-                _ => throw new ArgumentException("Argument was not recognized")
+                _ => throw new ArgumentException(Strings.CommandLineArgumentParser_ParseConfig_Argument_was_not_recognized)
             };
         }
     }
